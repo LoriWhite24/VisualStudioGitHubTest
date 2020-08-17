@@ -12,7 +12,7 @@ code {
     monospace;
 }
 
-container {
-    flex: 1;
-    text-align: 'center';
+.photo {
+    height: 400px;
+    width: 550px;
 }
