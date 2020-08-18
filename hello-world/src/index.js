@@ -9,8 +9,29 @@ import * as serviceWorker from './serviceWorker';
     lastName: 'Perez',
     avatarUrl: "https://newevolutiondesigns.com/images/freebies/cool-wallpaper-1.jpg"
 };*/
+//handling events
+class Toggle extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { isToggleOn: true };
+        // This binding is necessary to make `this` work in the callback    
+        this.handleClick = this.handleClick.bind(this);
+    }
+        handleClick() { this.setState(prevState => ({ isToggleOn: !prevState.isToggleOn })); }
+        render() {
+            return (
+                <button onClick={this.handleClick}>        {this.state.isToggleOn ? 'ON' : 'OFF'}
+                </button>
+            );
+        }
+}
+
+ReactDOM.render(
+  <Toggle />,
+document.getElementById('root')
+);
 //using classes
-function FormattedDate(props) {
+/*function FormattedDate(props) {
     return <h2>It is {props.date.toLocaleTimeString()}.</h2>;
 }
 
@@ -55,7 +76,7 @@ function tick() {
     );
 }
 
-setInterval(tick, 1000);
+setInterval(tick, 1000);*/
 //using functions
 /*function formatDate(date) {
     return date.toLocaleDateString();
