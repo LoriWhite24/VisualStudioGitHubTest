@@ -1,16 +1,92 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 import ReactDOM from 'react-dom';
 import './index.css';
+//import './Card.css';
 //import App from './App';
 import * as serviceWorker from './serviceWorker';
+//import Card from './Card';
 
-/*const user = {
-    firstName: 'Harper',
-    lastName: 'Perez',
-    avatarUrl: "https://newevolutiondesigns.com/images/freebies/cool-wallpaper-1.jpg"
-};*/
+//Inline If with Logical && Operator
+function Mailbox(props) {
+    const unreadMessages = props.unreadMessages;
+    return (
+        <div>
+            <h1>Hello!</h1>
+            {unreadMessages.length > 0 &&
+                <h2>
+                    You have {unreadMessages.length} unread messages.
+        </h2>
+            }
+        </div>
+    );
+}
+
+const messages = ['React', 'Re: React', 'Re:Re: React', ''];
+ReactDOM.render(
+    <Mailbox unreadMessages={messages} />,
+    document.getElementById('root')
+);
+//conditional rendering
+/*function LoginButton(props) {
+    return (
+        <button onClick={props.onClick}>
+            Login
+        </button>
+    );
+}
+
+function LogoutButton(props) {
+    return (
+        <button onClick={props.onClick}>
+            Logout
+        </button>
+    );
+}
+function UserGreeting(props) {
+    return <h1>Welcome back!</h1>;
+}
+
+function GuestGreeting(props) {
+    return <h1>Please sign up.</h1>;
+}
+function Greeting(props) {
+    const isLoggedIn = props.isLoggedIn;
+    if (isLoggedIn) { return <UserGreeting />; } return <GuestGreeting />;
+}
+class LoginControl extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleLoginClick = this.handleLoginClick.bind(this);
+        this.handleLogoutClick = this.handleLogoutClick.bind(this);
+        this.state = { isLoggedIn: false };
+    }
+
+    handleLoginClick() {
+        this.setState({ isLoggedIn: true });
+    }
+
+    handleLogoutClick() {
+        this.setState({ isLoggedIn: false });
+    }
+
+    render() {
+        const isLoggedIn = this.state.isLoggedIn;
+        let button;
+        if (isLoggedIn) { button = <LogoutButton onClick={this.handleLogoutClick} />; } else { button = <LoginButton onClick={this.handleLoginClick} />; }
+        return (
+            <div>
+                <Greeting isLoggedIn={isLoggedIn} />  <Card url="https://newevolutiondesigns.com/images/freebies/cool-wallpaper-1.jpg" imgAlt="img not found" name="Cat" series="Neko" details="Meow!" />  {button}      </div>
+        );
+    }
+}
+
+ReactDOM.render(
+    <LoginControl />,
+    document.getElementById('root')
+);*/
 //handling events
-class Toggle extends React.Component {
+/*class Toggle extends React.Component {
     constructor(props) {
         super(props);
         this.state = { isToggleOn: true };
@@ -29,7 +105,7 @@ class Toggle extends React.Component {
 ReactDOM.render(
   <Toggle />,
 document.getElementById('root')
-);
+);*/
 //using classes
 /*function FormattedDate(props) {
     return <h2>It is {props.date.toLocaleTimeString()}.</h2>;
@@ -77,6 +153,7 @@ function tick() {
 }
 
 setInterval(tick, 1000);*/
+
 //using functions
 /*function formatDate(date) {
     return date.toLocaleDateString();
