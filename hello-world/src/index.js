@@ -2,13 +2,55 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import ReactDOM from 'react-dom';
 import './index.css';
-//import './Card.css';
+import './Card.css';
 //import App from './App';
 import * as serviceWorker from './serviceWorker';
-//import Card from './Card';
+import Card from './Card';
 
+//Preventing Component from Rendering 
+/*function WarningBanner(props) {
+    if (!props.warn) {
+        return null;
+    }
+
+    return (
+        <div className="warning">
+            Warning!
+        </div>
+    );
+}
+
+class Page extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { showWarning: true }
+        this.handleToggleClick = this.handleToggleClick.bind(this);
+    }
+
+    handleToggleClick() {
+        this.setState(prevState => ({
+            showWarning: !prevState.showWarning
+        }));
+    }
+
+    render() {
+        return (
+            <div>
+                <WarningBanner warn={this.state.showWarning} />
+                <button onClick={this.handleToggleClick}>
+                    {this.state.showWarning ? 'Hide' : 'Show'}
+                </button>
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(
+    <Page />,
+    document.getElementById('root')
+);*/
 //Inline If with Logical && Operator
-function Mailbox(props) {
+/*function Mailbox(props) {
     const unreadMessages = props.unreadMessages;
     return (
         <div>
@@ -26,9 +68,9 @@ const messages = ['React', 'Re: React', 'Re:Re: React', ''];
 ReactDOM.render(
     <Mailbox unreadMessages={messages} />,
     document.getElementById('root')
-);
-//conditional rendering
-/*function LoginButton(props) {
+);*/
+//conditional rendering with Inline If-Else with Conditional Operator and Preventing Component from Rendering
+function LoginButton(props) {
     return (
         <button onClick={props.onClick}>
             Login
@@ -72,11 +114,13 @@ class LoginControl extends React.Component {
 
     render() {
         const isLoggedIn = this.state.isLoggedIn;
-        let button;
-        if (isLoggedIn) { button = <LogoutButton onClick={this.handleLogoutClick} />; } else { button = <LoginButton onClick={this.handleLoginClick} />; }
+        
         return (
             <div>
-                <Greeting isLoggedIn={isLoggedIn} />  <Card url="https://newevolutiondesigns.com/images/freebies/cool-wallpaper-1.jpg" imgAlt="img not found" name="Cat" series="Neko" details="Meow!" />  {button}      </div>
+                <Greeting isLoggedIn={isLoggedIn} />
+                {isLoggedIn ? <Card url="https://newevolutiondesigns.com/images/freebies/cool-wallpaper-1.jpg" imgAlt="img not found" name="Cat" series="Neko" details="Meow!" /> : null}
+                {isLoggedIn ? <LogoutButton onClick={this.handleLogoutClick} /> : <LoginButton onClick={this.handleLoginClick} />}
+            </div>
         );
     }
 }
@@ -84,7 +128,7 @@ class LoginControl extends React.Component {
 ReactDOM.render(
     <LoginControl />,
     document.getElementById('root')
-);*/
+);
 //handling events
 /*class Toggle extends React.Component {
     constructor(props) {
