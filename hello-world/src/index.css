@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: darkslategray;
 }
 
 code {
@@ -24,4 +25,80 @@ code {
     padding: 10px;
     font-size: 14pt;
     color: white;
+}
+
+h2 {
+    color: snow;
+    text-align: center;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 30px;
+    margin-left: 100px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+td {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    text-align: left;
+    cursor: pointer;
+    display: block;
+}
+
+th {
+    background: url(https://jackrugile.com/images/misc/noise-diagonal.png),linear-gradient(lightgreen, green);
+    color: white;
+    
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    text-align: left;
+    box-shadow: inset 0 1px 0 #999;
+    text-shadow: 0 1px 0 #000;
+    display: none;
+}
+
+td:before {
+    content: attr(data-th) ": ";
+    font-weight: bold;
+    width: 6.5em;
+    display: inline-block;
+}
+
+tr:nth-child(odd) {
+    background-color: snow;
+}
+
+tr:nth-child(even) {
+    background-color: lightgreen;
+}
+
+tr:hover {
+    background-color: #ccff99;
+}
+
+@media (min-width: 900px) {
+    h2 {
+        color: limegreen;
+        margin-left: 100px;
+        text-align: left;
+    }
+    table {
+        width: 50%;
+        border-collapse: collapse;
+        border-bottom: 2px solid green;
+    }
+    th, td {
+        display: table-cell;
+        padding: .25em .5em;
+    }
+    td:before {
+        display: none;
+    }
 }

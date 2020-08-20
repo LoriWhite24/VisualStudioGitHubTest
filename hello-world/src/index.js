@@ -2,15 +2,154 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { useTable } from 'react-table';
 //import './Card.css';
 //import App from './App';
 import * as serviceWorker from './serviceWorker';
 //import Card from './Card';
 
+const cities = [
+    {
+        id: 1,
+        city: 'New York',
+        state: 'NY',
+        population: 8000000
+    },
+    {
+        id: 2,
+        city: 'Los Angeles',
+        state: 'CA',
+        population: 4000000
+    },
+    {
+        id: 3,
+        city: 'Dallas',
+        state: 'TX',
+        population: 1300000
+    },
+    {
+        id: 4,
+        city: 'Chicago',
+        state: 'IL',
+        population: 2700000
+    },
+    {
+        id: 5,
+        city: 'Boston',
+        state: 'MA',
+        population: 700000
+    }
+];
+
+const datahead = ["#", "City", "State", "Population"];
+const data = cities;
+const columns = [
+    {
+        Header: '#',
+        accessor: 'id',
+    },
+    {
+        Header: 'City',
+        accessor: 'city',
+    },
+    {
+        Header: 'State',
+        accessor: 'state',
+    },
+    {
+        Header: 'Population',
+        accessor: 'population',
+    }
+];
+//Table with built in library
+function App() {
+    const {
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        rows,
+        prepareRow,
+       
+    } = useTable({
+        columns,
+        data,
+    });
+
+    return (
+        <table {...getTableProps()}>
+            <thead>
+                {headerGroups.map(headerGroup => (
+                    <tr {...headerGroup.getHeaderGroupProps()}>
+                        {headerGroup.headers.map(column => (
+                            <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                        ))}
+                    </tr>
+                ))}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+                {rows.map((row, i) => {
+                    prepareRow(row)
+                    return (
+                        <tr {...row.getRowProps()}>
+                            {row.cells.map((cell, j) => {
+                                return  j === 0 ? <th {...cell.getCellProps()}>{cell.render('Cell')}</th> : <td {...cell.getCellProps()} data-th={datahead[j]}>{cell.render('Cell')}</td>;
+                            })}
+                        </tr>
+                    )
+                })}
+            </tbody>
+        </table>
+    );
+}
+//Table without built in library
+function TableRow(props) {
+    const city = props.value;
+    return (
+    <tr>
+        <th >{city.id}</th>
+            <td data-th="City">{city.city}</td>
+            <td data-th="State">{city.state}</td>
+            <td data-th="Population">{city.population}</td>
+    </tr>);
+}
+
+function CityTable(props) {
+    const cities = props.cities;
+    const dhead = props.head;
+    return (
+        <table>
+            <thead>
+                <tr>
+                    {dhead.map((item) => {
+                        return <th>{item}</th>;
+                    })}
+                </tr>
+            </thead>
+            <tbody>
+                {cities.map((item) =>
+                    <TableRow key={item.id}
+                        value={item} />
+                )}
+            </tbody>
+        </table>
+    );
+}
+
+ReactDOM.render(
+    <div>
+        <h2>Table Made From Scratch</h2>
+        <CityTable cities={cities} head={datahead} />
+        <h2>Table Made From react-table</h2>
+        <App />
+    </div>,
+    document.getElementById('root')
+);
+
+
 //Lifting State Up
 
 //Writing Conversion Functions
-function toCelsius(fahrenheit) {
+/*function toCelsius(fahrenheit) {
     return (fahrenheit - 32) * 5 / 9;
 }
 
@@ -93,7 +232,7 @@ class Calculator extends React.Component {
 ReactDOM.render(
     <Calculator />,
     document.getElementById('root')
-);
+);*/
 
 
 
