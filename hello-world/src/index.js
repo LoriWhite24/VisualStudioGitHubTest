@@ -8,6 +8,8 @@ import { useTable } from 'react-table';
 import * as serviceWorker from './serviceWorker';
 //import Card from './Card';
 
+
+//Playing with Tables
 const cities = [
     {
         id: 1,
