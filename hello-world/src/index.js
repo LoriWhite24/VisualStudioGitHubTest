@@ -8,6 +8,51 @@ import { useTable } from 'react-table';
 import * as serviceWorker from './serviceWorker';
 //import Card from './Card';
 
+//Specialization
+class SignUpDialog extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSignUp = this.handleSignUp.bind(this);
+        this.state = { login: '' };
+    }
+
+    render() {
+        return (
+            <Dialog title="City Table Program"
+                message="How should we refer to you?">
+                <input value={this.state.login}
+                    onChange={this.handleChange} />
+                <button onClick={this.handleSignUp}>
+                    Sign Me Up!
+        </button>
+            </Dialog>
+        );
+    }
+
+    handleChange(e) {
+        this.setState({ login: e.target.value });
+    }
+
+    handleSignUp() {
+        alert(`Welcome aboard, ${this.state.login}!`);
+    }
+}
+function Dialog(props) {
+    return (
+        <FancyBorder color="blue">
+            <h1 className="Dialog-title">
+                {props.title}
+            </h1>
+            
+            <p className="Dialog-message">
+                {props.message}
+            </p>
+            {props.children}
+        </FancyBorder>
+    );
+}
+
 //Playing with Containment where the components don’t know their children ahead of time
 function FancyBorder(props) {
     return (
@@ -161,9 +206,11 @@ const left = <div><h2> Table Made From Scratch</ h2><CityTable cities={cities} h
 const right = <div><h2>Table Made From react-table</h2><App /></div>;
 
 ReactDOM.render(
-    <FancyBorder color="green">
+    <div>
+        <SignUpDialog/>
+        <FancyBorder color="green">
         <SplitPane left={left} right={right}/>        
-    </FancyBorder>,
+    </FancyBorder></div>,
     document.getElementById('root')
 );
 
