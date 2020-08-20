@@ -27,6 +27,33 @@ code {
     color: white;
 }
 
+.SplitPane {
+    width: 100%;
+    height: auto;
+}
+
+.SplitPane-left {
+    float: left;
+    width: 50%;
+    height: auto;
+}
+
+.SplitPane-right {
+    float: left;
+    width: 50%;
+    height: auto;
+}
+
+.FancyBorder {
+    padding: 10px 10px;
+    border: 10px solid;
+    display: flex;
+}
+
+.FancyBorder-green {
+    border-color: springgreen;
+}
+
 h2 {
     color: snow;
     text-align: center;
@@ -100,5 +127,8 @@ tr:hover {
     }
     td:before {
         display: none;
+    }
+    .FancyBorder {
+        height: 100vh;
     }
 }

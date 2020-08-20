@@ -8,6 +8,26 @@ import { useTable } from 'react-table';
 import * as serviceWorker from './serviceWorker';
 //import Card from './Card';
 
+//Playing with Containment where the components don’t know their children ahead of time
+function FancyBorder(props) {
+    return (
+        <div className={'FancyBorder FancyBorder-' + props.color}>
+            {props.children}
+        </div>
+    );
+}
+function SplitPane(props) {
+    return (
+        <div className="SplitPane">
+            <div className="SplitPane-left">
+                {props.left}
+            </div>
+            <div className="SplitPane-right">
+                {props.right}
+            </div>
+        </div>
+    );
+}
 
 //Playing with Tables
 const cities = [
@@ -137,13 +157,13 @@ function CityTable(props) {
     );
 }
 
+const left = <div><h2> Table Made From Scratch</ h2><CityTable cities={cities} head={datahead} /></div>;
+const right = <div><h2>Table Made From react-table</h2><App /></div>;
+
 ReactDOM.render(
-    <div>
-        <h2>Table Made From Scratch</h2>
-        <CityTable cities={cities} head={datahead} />
-        <h2>Table Made From react-table</h2>
-        <App />
-    </div>,
+    <FancyBorder color="green">
+        <SplitPane left={left} right={right}/>        
+    </FancyBorder>,
     document.getElementById('root')
 );
 
